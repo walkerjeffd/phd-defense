@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web-based Interactive Modeling</title>
+
+		<meta name="description" content="PhD Dissertation Defense">
+		<meta name="author" content="Jeffrey D. Walker">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/custom.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Web Applications for Interactive Environmental Modeling</h1>
+					<br>
+					<h3>PhD Defense</h3>
+					<br>
+					<p>
+						<a href="http://walkerjeff.com">Jeffrey D. Walker</a>
+					</p>
+					<p>Dept. Civil &amp; Environmental Engineering</p>
+					<p>Tufts University</p>
+					<p>March 28, 2014</p>
+
+					<aside class="notes">
+						Welcome, and thanks for coming. My name is Jeff Walker and I am going to talk about web applications for interactive environmental modeling.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Presentation Tutorial</h1>
+						<p>This presentation was made with the <a href="http://lab.hakim.se/reveal-js/#/">reveal.js</a> HTML/JavaScript presentation framework.</p>
+						<p>If you are unfamiliar with this format, <a href="http://lab.hakim.se/reveal-js/#/">click here</a> to walk through the offical tutorial.</p>
+						<p>In order to navigate, note the following:</p>
+						<ul>
+							<li>Unlike Powerpoint, slides are arranged in two-dimensions</li>
+							<li>The 'compass' in the lower-right corner indicates which directions you can move (in this case, left/right/down)</li>
+							<li>Use the arrow keys to change slides</li>
+							<li>If you get lost, press the Esc key to see all the slides</li>
+							<li>Press the down arrow key to see the slide below (do this now)</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Good!</h1>
+						<p>Each section of the presentation is a column of slides</p>
+						<p>So always move down before moving right</p>
+						<p>When you get to the bottom, then go right to go to the next section</p>
+						<p>Now press the right arrow to begin the presentation</p>
+					</section>
+				</section>
+
+				<section>
+					<h1>Overview</h1>
+					<br>
+					<ul>
+						<li>Problems</li>
+						<li>Methodology</li>
+						<li>Project 1: Water Quality Model</li>
+						<li>Project 2: Watershed Model</li>
+						<li>Project 3: Living Model</li>
+						<li>Discussion &amp; Conclusions</li>
+					</ul>
+
+					<aside class="notes">
+						Today, I am going to begin by talking about the problems that this research is aimed to address <br>
+						I am then going to briefly explain the methodology and show how this is a unique approach to web-based modeling, but also modeling in general <br>
+						I will then demonstrate how we can use this approach through a series of three projects <br>
+						Finally, I'll discuss the implications of this work, its limitations, and some suggestions for future research <br>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>The Problems</h1>
+						<br>
+						<ul>
+							<li class="fragment">Model Understanding</li>
+							<li class="fragment">Model Accessibility</li>
+							<li class="fragment">Model Life Cycle</li>
+						</ul>
+
+						<aside class="notes">
+							Finding new ways to improve how we use and understand models. <br>
+							Rather than focus on any one model in particular<br>
+							Comes down to three major problems
+						</aside>
+					</section>
+
+					<section>
+						<h2 class="short">Model Understanding</h2>
+						<img src="img/blackbox.png" alt="" class="stretch">
+						<p><small><a href="http://dx.doi.org/10.1016/0928-4869(94)90011-6" target="_blank">Kuljis (1994). <i>User interfaces and discrete event simulation models</i></a></small></p>
+						<aside class="notes">
+							The model understanding problem is sometimes called the black box problem <br>
+							You give the model some input, it performs some computations, and generates some output. <br>
+							But how do we know how the model converts the input data into outputs? <br>
+							Most people would say: well, you have to know the equations <br>
+							And this is often called the model theory <br>
+							But are the equations and the theory really the same thing? <br>
+							I would argue that the equations are really a representation of theory. <br>
+							Equations are based on mathematical notation and abstract symbols to represent quantities, processes and relationships <br>
+							But those abstract symbols really have an underlying meaning <br>
+							For example, consider a model that represents the decay of a pollutant as a first order process <br>
+							Most of us could write down a differential equation representing that process, but what that equaiton means is that the rate of change is linearly proportional to the concentration <br>
+							But unless you've studied this equation before, it may not be entirely obvious what the behavior is <br>
+							So it's sometimes hard to deduce based on the equations alone, what the underlying theory is <br>
+							And so there's another representation of theory called visualizations<br>
+							And when you look in textbooks or journal articles, you'll find a variety of visualizations designed to help understanding the shape of an equation, or the components of the model <br>
+							And you can really think of these visualizations as an alternative representation of model theory <br>
+						</aside>
+					</section>
+
+					<section>
+						<h2 class="short">Model Accessibility</h2>
+						<img src="img/chapra_accessibility_1.png" alt="" class="stretch">
+            			<p><small><a href="http://dx.doi.org/10.1061/(ASCE)0733-9496(2003)129:4(247)" target="_blank">Chapra (2003). <i>Engineering Water Quality Models and TMDLs</i></a></small></p>
+						<aside class="notes">
+							The second problem is model accessibility <br>
+							There are two aspects to this problem <br>
+							There is the physical accessibility, that is whether someone can obtain and execute the model software <br>
+							There is also technical accessibility, that is how easy it is to use the software <br>
+							When you read in the literature about the use of models for management and decision making, you find a lot of discussion about the need to make models more accessible, we need to put them in the hands of stakeholders and decision makers so that they can use the model to explore the system behavior and decision space. <br>
+							So this is really where the web can play a major role. By making models accessible over the web, avoiding the need to install or purchase special software, eliminating compatibility problems, and allowing anyone with an Internet connection and standard web browser to access and interact with the model.
+						</aside>
+					</section>
+
+					<section>
+						<h2 class="short">Model Accessibility</h2>
+						<img src="img/chapra_accessibility_2.png" alt="" class="stretch">
+            			<p><small><a href="http://dx.doi.org/10.1061/(ASCE)0733-9496(2003)129:4(247)" target="_blank">Chapra (2003). <i>Engineering Water Quality Models and TMDLs</i></a></small></p>
+						<aside class="notes">
+							The second problem is model accessibility <br>
+							There are two aspects to this problem <br>
+							There is the physical accessibility, that is whether someone can obtain and execute the model software <br>
+							There is also technical accessibility, that is how easy it is to use the software <br>
+							When you read in the literature about the use of models for management and decision making, you find a lot of discussion about the need to make models more accessible, we need to put them in the hands of stakeholders and decision makers so that they can use the model to explore the system behavior and decision space. <br>
+							So this is really where the web can play a major role. By making models accessible over the web, avoiding the need to install or purchase special software, eliminating compatibility problems, and allowing anyone with an Internet connection and standard web browser to access and interact with the model.
+						</aside>
+					</section>
+
+					
+					<section>
+						<h2 class="short">Model Life Cycle</h2>
+						<img src="img/epa_cycle.png" alt="" class="stretch">
+						<p><small><a href="http://water.epa.gov/polwaste/nps/handbook_index.cfm" target="_blank">USEPA (2008). <i>Handbook for Developing Watershed Plans to Restore and Protect Our Waters</i></a></small></p>
+						<aside class="notes">
+							The model life cycle is often described as a cyclical process. <br>
+							A model is created to support some management plan or make some decision, a lot of financial resources and human labor goes into configuring the model. It is applied to compare alternative scenarios or decisions, and then the project is complete. <br>
+							But after that initial project is complete, the model goes into a state of hibernation. It is basically left idly sitting on someone's hard drive, not doing anything. <br>
+							A few years go by, and another project comes along and the model is resurrected to evaluate the effectiveness of the previous plan or decision or to support some new project. And it goes through a process of model updates. New input and observation data are compiled to extend the simulation period, and the model is run over more recent years. <br>
+							So this is clearly a cyclical process, but it is also somewhat sporadic or fragmented. We create a model, apply it, let it sit, then update it and apply again, and so on. <br>
+							And so all this time that the model is left sitting idle in its state of hibernation is a waste of the resources and knowledge that went into creating the model in the first place. <br>
+							Furthermore, the process of updating a model is fairly time consuming and expensive. <br>
+							Today, much of this process can be automated now that most datasets are available and frequently updated right on the web. <br>
+							So all this data is sitting out there, ready to go. It's a matter of retreiving it, processing it, and feeding into the model to update the input datasets and extend the simulation. <br>
+							If we can do this, then the model life cycle becomes more stream-lined or continuous. <br>
+							So instead of this traditional cycle of apply the model, let it sit, update the model, apply it, let it sit, the model can be continuously updated as new data become available, and then it can also be continuously applied. <br>
+							So this would be a more cost-effective use of the model and increase the rate of return on the initial investment in the model's creation.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Methodology</h1>
+						<br>
+						<p>Client-side web applications built using web standards to create interactive and visual model interfaces</p>
+
+						<aside class="notes">
+							So, how are we going to do this? <br>
+							How are we going to make models easier to understand, more accessible, and have a more continuous life cycle? <br>
+							The approach I developed in this research is to use client-side web applications to create... <br>
+							So what does this mean? <br>
+						</aside>
+					</section>
+
+					<section>
+						<h2 class="short">Web Communications</h2>
+						<img class="stretch" src="/img/web_client_server.png" alt="">
+					</section>
+
+					<section>
+						<h2 class="short">Web-based Simulation Architectures</h2>
+						<img class="stretch" src="/img/wbs_architectures.png" alt="">
+						<p><small><a href="http://dx.doi.org/10.1016/j.simpat.2009.09.013" target="_blank">Byrne et al. (2010) <i>A review of Web-based simulation and supporting tools</i></a></small></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Project 1</h1>
+						<h2>Web-based Interactive River Model (WIRM)</h2>	
+						<p class="fragment"><b>Goals</b></p>
+						<ul>
+							<li class="fragment">Demonstrate client-side approach to simulation and visualization using web standards (HTML, JavaScript)</li>
+							<li class="fragment">Store model parameters on server to promote model sharing and collaboration</li>
+						</ul>
+						<br><br>
+						<p class="fragment"><small>Walker, J. D., and Chapra, S. C. (2014). A client-side web application for interactive environmental simulation modeling. <i>Environmental Modelling &amp; Software</i>, 55, 49-60</small></p>
+					</section>
+					<section class="text-center">
+						<h1>DEMO</h1>
+						<p><a href="http://wirm.walkerjeff.com" target="_blank">wirm.walkerjeff.com</a></p>
+					</section>
+					<section>
+						<h2>Conclusions</h2>
+						<ul>
+							<li>Client-side approach not only possible, but is <i>surprisingly fast</i></li>
+							<li class="fragment">Strong potential for interactive interfaces</li>
+							<li class="fragment">Raises new questions:
+								<ul>
+									<li class="fragment">Are interactive interfaces useful? How?</li>
+									<li class="fragment">What else can we do? Add data? Calibration?</li>
+								</ul>
+							</li>
+						</ul>
+						
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Project 2</h1>
+						<h2>Web-based Interactive Watershed Model (WIWM)</h2>
+
+						<p class="fragment"><b>Goals</b></p>
+						<ul>
+							<li class="fragment">Use interactive visualizations to understand model theory</li>
+							<li class="fragment">Incorporate input and observation data for dynamic simulations</li>
+							<li class="fragment">Interactive interfaces for model calibration</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Cognitive Perspective</h2>
+						<p>Can interactive visualizations help us understand how models work? If so, how?</p>
+						<br>
+						<ul>
+							<li class="fragment">Mental model formation</li>
+							<li class="fragment">Amplify cognition</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Mental Models</h2>
+						<blockquote class="fragment">
+							"Mental models are the mechanisms whereby humans are able to generate <span class="orange">descriptions</span> of system purpose and form, <span class="orange">explanations</span> of system functioning and observed system states, and <span class="orange">predictions</span> of future system states." <br>- Rouse &amp; Morris (1986)
+						</blockquote>
+					</section>
+					
+					<section>
+						<h2 class="short">Mental Models</h2>
+						<img class="stretch" src="/img/liu2010.png" alt="">
+						<p><small><a href="http://dx.doi.org/10.1109/TVCG.2010.177" target="_blank">Liu and Stasko (2010) <i>Mental models, visual reasoning and interaction in information visualization: a top-down perspective</i></a></small></p>
+					</section>
+
+					<section>
+						<h2 class="short">Amplify Cognition</h2>
+						<img class="stretch" src="/img/card1999.png" alt="">
+						<p><small>Card et al. (1999). <i>Information Visualization: Using Vision to Think</i></small></p>
+					</section>
+
+					<section>
+						<h3>abcd Water Balance Model</h3>
+						<img class="stretch" src="img\abcd_diagram.png" alt="abcd Model Diagram">
+						<p><small>Developed by Thomas (1981)</small></p>
+					</section>
+
+					<section>
+						<h2>Mass Balance</h2>
+						<div class="fragment">$$\Delta Storage = \sum{Inflow_t} - \sum{Outflow_t} $$</div>
+						<br>
+						<div class="fragment">$$Storage_t - Storage_{t-1} = \sum{Inflow_t} - \sum{Outflow_t} $$</div>
+						<br>
+						<div class="fragment">$$Storage_{t-1} + \sum{Inflow_t} = Storage_t + \sum{Outflow_t} $$</div>
+					</section>
+
+					<section>
+						<h2 class="short">Mass Balance Diagram</h2>
+						<img src="img\mass_balance.png" alt="Mass Balance Diagram" width="50%" height="50%">
+						<br>
+						$$ Storage_{t-1} + \sum{Inflow_t} = Storage_t + \sum{Outflow_t} $$
+					</section>
+
+					<section>
+						<h2 class="short">Soil Moisture Diagram</h2>
+						<img src="img\soil_no_lines.png" alt="Soil Moisture Mass Balance Diagram" class="stretch fragment">
+						<br>
+						$$ Soil_{t-1} + Precip_t = Soil_t + ET_t + Runoff_t + Recharge_t $$
+					</section>
+
+					<section>
+						<h2 class="short">Soil Moisture Diagram</h2>
+						<img src="img\soil_lines.png" alt="Soil Moisture Mass Balance Diagram" class="stretch">
+						<br>
+						$$ Soil_{t-1} + Precip_t = Soil_t + ET_t + Runoff_t + Recharge_t $$
+					</section>
+
+					<section class="text-center">
+						<h1>DEMO</h1>
+						<p><a href="http://abcd.walkerjeff.com" target="_blank">abcd.walkerjeff.com</a></p>
+					</section>
+
+					<section>
+						<h2>Conclusions</h2>
+						<ul>
+							<li class="fragment">Interactive visualizations are a powerful way of understanding model theory and behavior</li>
+							<li class="fragment">Client-side applications can maintain application state and perform data input/output using text files</li>
+							<li class="fragment">Next question:
+								<ul>
+									<li>Can we couple a model to input data sources?</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Project 3</h1>
+						<h2>Living Model</h2>
+						<p class="fragment">Goals</p>
+						<ul>
+							<li class="fragment">Couple client-side application to server-side data management system</li>
+							<li class="fragment">Interface to inspect and manage the data</li>
+							<li class="fragment">Interface to explore and refine the model</li>
+						</ul>
+					</section>
+					<section>
+						<h2 class="short">Architecture</h2>
+						<img src="img\living_architecture.png" alt="Living Model Architecture" class="stretch">
+					</section>
+
+					<section class="text-center">
+						<h1>DEMO</h1>
+						<p><a href="http://living.walkerjeff.com/" target="_blank">living.walkerjeff.com</a></p>
+					</section>
+
+					<section>
+						<h2>Conclusions</h2>
+						<ul>
+							<li class="fragment">Living model provides an interactive interface for updating and evaluating model simulations</li>
+							<li class="fragment">Important to provide interfaces for supervising the process</li>
+							<li class="fragment">Potential to fundamentally change how we use models</li>
+							<li class="fragment">Future Research
+								<ul>
+									<li class="fragment">Data processing algorithms (cleaning, filling, ...)</li>
+									<li class="fragment">Additional data management interfaces</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Discussion</h2>
+					<p class="fragment">Limitations</p>
+					<ul>
+						<li class="fragment">Not all models will run in the browser</li>
+						<li class="fragment">Performance limitations</li>
+						<li class="fragment">Need more research on the "science of interaction"</li>
+					</ul>
+					<p> </p>
+					<br>
+					<p class="fragment">Future Research</p>
+					<ul>
+						<li class="fragment">Try different models</li>
+						<li class="fragment">Geospatial visualizations</li>
+						<li class="fragment">Data exploration and analysis</li>
+						<li class="fragment">Decision support systems</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Conclusions</h2>
+					<ul>
+						<li class="fragment">Standard web languages provide the performance and features necessary to support client-side simulation modeling</li>
+						<li class="fragment">Client-side applications support highly interactive modeling interfaces</li>
+						<li class="fragment">Visual interaction improves understanding of model theory and behavior</li>
+						<li class="fragment">Use web services to couple models to data sources and improve the model life cycle</li>
+						<li class="fragment">Lots more to explore...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Acknowledgements</h2>
+					<ul>
+						<li>Advisor <br>Dr. Steven Chapra (Tufts)</li>
+						<li>Committee <br>Dr. Alva Couch (Tufts) <br>Dr. Richard Vogel (Tufts) <br>Dr. Peter Shanahan (MIT)</li>
+						<li>Friends &amp; Family: <br>
+						Dr. Elizabeth Halliday<br>
+						Dr. William Walker &amp; Mrs. Martha Walker</li>
+						All My Tufts Friends &amp; Colleagues
+					</ul>
+				</section>
+
+				<section>
+					<h2>Thanks!</h2>
+
+					<p><a href="http://phd.walkerjeff.com">phd.walkerjeff.com</a></p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+
+			    // The "normal" size of the presentation, aspect ratio will be preserved
+			    // when the presentation is scaled to fit different resolutions. Can be
+			    // specified using percentage units.
+			    width: 960,
+			    height: 700,
+			    // width: 1600,
+			    // height: 900,
+
+			    // Factor of the display size that should remain empty around the content
+			    margin: 0.05,
+
+			    // Bounds for smallest/largest possible scale to apply to content
+			    minScale: 0.2,
+			    maxScale: 1.2,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// MathJax
+			    math: {
+			        mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+			        config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			    },
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
